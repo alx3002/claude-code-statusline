@@ -38,12 +38,30 @@ A custom status line for [Claude Code](https://claude.ai/code) that shows model,
 Install `jq` if needed:
 
 ```bash
-# Debian / Ubuntu
+# Debian / Ubuntu / WSL
 sudo apt install jq
 
 # macOS
 brew install jq
+
+# Windows (Git Bash) — pick one:
+winget install jqlang.jq
+# or: scoop install jq
+# or: choco install jq
 ```
+
+### Windows support
+
+Claude Code on Windows runs status line commands through **Git Bash**, so this script works natively — no changes needed.
+
+| Environment | Works? | Notes |
+|---|---|---|
+| WSL (Ubuntu, Debian…) | ✅ | Identical to Linux |
+| Git Bash | ✅ | Install `jq` via winget/scoop/choco |
+| PowerShell only | ❌ | Would need a `.ps1` rewrite |
+
+> Make sure [Git for Windows](https://git-scm.com/download/win) is installed — it includes Git Bash.  
+> On Windows, `~/.claude/` maps to `C:\Users\YourName\.claude\`.
 
 ## Installation
 
@@ -58,7 +76,8 @@ Then restart Claude Code.
 ### Manual
 
 1. Copy `statusline.sh` to `~/.claude/statusline-command.sh`
-2. Make it executable: `chmod +x ~/.claude/statusline-command.sh`
+2. Make it executable: `chmod +x ~/.claude/statusline-command.sh`  
+   *(on Git Bash/WSL — not needed on native Windows)*
 3. Add to `~/.claude/settings.json`:
 
 ```json

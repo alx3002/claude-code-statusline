@@ -36,12 +36,30 @@ Uma barra de status customizada para o [Claude Code](https://claude.ai/code) que
 Instale o `jq` se necessário:
 
 ```bash
-# Debian / Ubuntu
+# Debian / Ubuntu / WSL
 sudo apt install jq
 
 # macOS
 brew install jq
+
+# Windows (Git Bash) — escolha um:
+winget install jqlang.jq
+# ou: scoop install jq
+# ou: choco install jq
 ```
+
+### Suporte ao Windows
+
+No Windows, o Claude Code executa o script da status line pelo **Git Bash** — o script funciona direto, sem nenhuma adaptação.
+
+| Ambiente | Funciona? | Observação |
+|---|---|---|
+| WSL (Ubuntu, Debian…) | ✅ | Idêntico ao Linux |
+| Git Bash | ✅ | Instale o `jq` via winget/scoop/choco |
+| Somente PowerShell | ❌ | Precisaria reescrever em `.ps1` |
+
+> Certifique-se de ter o [Git para Windows](https://git-scm.com/download/win) instalado — ele já inclui o Git Bash.  
+> No Windows, `~/.claude/` corresponde a `C:\Users\SeuNome\.claude\`.
 
 ## Instalação
 
@@ -56,7 +74,8 @@ Depois reinicie o Claude Code.
 ### Manual
 
 1. Copie `statusline.sh` para `~/.claude/statusline-command.sh`
-2. Torne executável: `chmod +x ~/.claude/statusline-command.sh`
+2. Torne executável: `chmod +x ~/.claude/statusline-command.sh`  
+   *(no Git Bash/WSL — não é necessário no Windows nativo)*
 3. Adicione ao `~/.claude/settings.json`:
 
 ```json
