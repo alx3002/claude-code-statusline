@@ -7,7 +7,11 @@ input=$(cat)
 # ── Workspace ─────────────────────────────────────────────────────────────────
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // empty')
 cwd="${cwd:-$(pwd)}"
-dir_basename=$(basename "$cwd")
+# Normaliza separadores: converte barras invertidas (Windows) em barras normais
+cwd="${cwd//\\//}"
+# Remove barra ou letra de drive no final para o basename funcionar corretamente
+cwd="${cwd%/}"
+dir_basename="${cwd##*/}"           # equivale a basename, mas funciona com paths Windows
 branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
 
 # ── Modelo e effort ───────────────────────────────────────────────────────────
@@ -170,7 +174,8 @@ fi
 # Remove ANSI para calcular largura real
 plain=$(printf "%b" "$content" | sed 's/\x1b\[[0-9;]*m//g')
 plain_len=${#plain}
-cols=$(tput cols 2>/dev/null || echo 80)
+# tput pode falhar no Git Bash/Windows; usa $COLUMNS como segundo fallback
+cols=$(tput cols 2>/dev/null || echo "${COLUMNS:-80}")
 pad=$(( (cols - plain_len) / 2 ))
 [ "$pad" -lt 0 ] && pad=0
 printf "%${pad}s" ""

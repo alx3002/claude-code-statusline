@@ -55,11 +55,15 @@ No Windows, o Claude Code executa o script da status line pelo **Git Bash** — 
 | Ambiente | Funciona? | Observação |
 |---|---|---|
 | WSL (Ubuntu, Debian…) | ✅ | Idêntico ao Linux |
-| Git Bash | ✅ | Instale o `jq` via winget/scoop/choco |
+| Git Bash + Windows Terminal | ✅ | Setup recomendado no Windows |
+| Git Bash + cmd / terminais antigos | ⚠️ | Caracteres da barra (`█░`) podem não renderizar; centralização pode ficar errada |
 | Somente PowerShell | ❌ | Precisaria reescrever em `.ps1` |
 
+> **Recomendado no Windows:** [Windows Terminal](https://aka.ms/terminal) + [Cascadia Code](https://github.com/microsoft/cascadia-code) (ou qualquer Nerd Font) para renderizar corretamente os caracteres da barra de progresso.  
 > Certifique-se de ter o [Git para Windows](https://git-scm.com/download/win) instalado — ele já inclui o Git Bash.  
 > No Windows, `~/.claude/` corresponde a `C:\Users\SeuNome\.claude\`.
+
+O script trata caminhos Windows automaticamente — barras invertidas em `workspace.current_dir` são normalizadas para que o nome da pasta sempre apareça corretamente.
 
 ## Instalação
 

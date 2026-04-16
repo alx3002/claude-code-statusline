@@ -57,11 +57,15 @@ Claude Code on Windows runs status line commands through **Git Bash**, so this s
 | Environment | Works? | Notes |
 |---|---|---|
 | WSL (Ubuntu, Debian…) | ✅ | Identical to Linux |
-| Git Bash | ✅ | Install `jq` via winget/scoop/choco |
+| Git Bash + Windows Terminal | ✅ | Recommended Windows setup |
+| Git Bash + cmd / old terminals | ⚠️ | Block chars (`█░`) may not render; centering may be off |
 | PowerShell only | ❌ | Would need a `.ps1` rewrite |
 
+> **Recommended on Windows:** [Windows Terminal](https://aka.ms/terminal) + [Cascadia Code](https://github.com/microsoft/cascadia-code) (or any Nerd Font) for correct rendering of the progress bar characters.  
 > Make sure [Git for Windows](https://git-scm.com/download/win) is installed — it includes Git Bash.  
 > On Windows, `~/.claude/` maps to `C:\Users\YourName\.claude\`.
+
+The script handles Windows paths automatically — backslashes in `workspace.current_dir` are normalized so the folder name always displays correctly.
 
 ## Installation
 
