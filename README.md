@@ -1,5 +1,7 @@
 # Claude Code — Custom Status Line
 
+> 🇧🇷 [Versão em português](README.pt-br.md)
+
 A custom status line for [Claude Code](https://claude.ai/code) that shows model, effort level, git info, token usage, and real-time rate limit bars.
 
 ## Preview
