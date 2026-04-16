@@ -128,7 +128,7 @@ if [ -n "$model_name" ]; then
     content+=" "
 fi
 
-content+="${MUTED}│${RESET} ${DIR}${dir_basename}${RESET}"
+content+="${MUTED}│${RESET} 📁 ${DIR}${dir_basename}${RESET}"
 
 if [ -n "$branch" ]; then
     content+=" ${MUTED}·${RESET} ${BRANCH}${branch}${RESET}"
@@ -158,7 +158,7 @@ if [ -n "$rl_5h_pct" ] && [ "$rl_5h_pct" != "null" ]; then
     rl5_pct_int=$(LC_ALL=C awk "BEGIN {print int($rl_5h_pct+0.5)}")
     rl5_time=$(fmt_remaining "$rl_5h_reset")
     content+=" ${MUTED}│ 5h${RESET} $(make_bar "$rl_5h_pct" "$rl5_color") ${rl5_color}${rl5_pct_int}%${RESET}"
-    [ -n "$rl5_time" ] && content+=" ${MUTED}↺${rl5_time}${RESET}"
+    [ -n "$rl5_time" ] && content+=" ${MUTED}${rl5_time}${RESET}"
 fi
 
 # Rate limit 7d
@@ -167,7 +167,7 @@ if [ -n "$rl_7d_pct" ] && [ "$rl_7d_pct" != "null" ]; then
     rl7_pct_int=$(LC_ALL=C awk "BEGIN {print int($rl_7d_pct+0.5)}")
     rl7_time=$(fmt_remaining "$rl_7d_reset")
     content+=" ${MUTED}│ 7d${RESET} $(make_bar "$rl_7d_pct" "$rl7_color") ${rl7_color}${rl7_pct_int}%${RESET}"
-    [ -n "$rl7_time" ] && content+=" ${MUTED}↺${rl7_time}${RESET}"
+    [ -n "$rl7_time" ] && content+=" ${MUTED}${rl7_time}${RESET}"
 fi
 
 # ── Centering ─────────────────────────────────────────────────────────────────
