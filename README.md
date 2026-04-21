@@ -67,6 +67,22 @@ Claude Code on Windows runs status line commands through **Git Bash**, so this s
 
 The script handles Windows paths automatically — backslashes in `workspace.current_dir` are normalized so the folder name always displays correctly.
 
+#### Windows without jq
+
+If you don't want to install `jq`, use the alternative `statusline-windows.sh` — it uses **Python 3** (already available on most Windows machines) for JSON parsing. It includes the same fields plus a `ctx` (context window usage) indicator:
+
+```
+│ Sonnet · high │ jogo · main │ +47 -12 │ in 25.3k out 4.1k ctx 12.7% cache 18.2k │ 5h ██░░░░░░ 35% 2h │ 7d ░░░░░░░░ 12%
+```
+
+Install with:
+
+```bash
+bash install-windows.sh
+```
+
+Requirements: **Python 3** + **Git for Windows** (no `jq` needed).
+
 ## Installation
 
 ### One command
@@ -222,6 +238,12 @@ echo '{}' | bash ~/.claude/statusline-command.sh
 ```
 
 If it errors, check that `jq` is installed and the script is executable.
+
+If you're on Windows and don't have `jq`, use `statusline-windows.sh` instead — it only requires Python 3:
+
+```bash
+bash install-windows.sh
+```
 
 **Rate limit bars not showing**
 
