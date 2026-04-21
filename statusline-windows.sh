@@ -184,10 +184,6 @@ out_fmt=$(fmt_k "$total_output")
 content+=" ${MUTED}│${RESET}"
 content+=" ${MUTED}in${RESET} ${TOKEN}${in_fmt}${RESET}"
 content+=" ${MUTED}out${RESET} ${TOKEN}${out_fmt}${RESET}"
-if [ -n "$ctx_pct" ] && [ "$ctx_pct" != "0" ] && [ "$ctx_pct" != "0.0" ]; then
-    ctx_color=$(pct_color "$ctx_pct")
-    content+=" ${MUTED}ctx${RESET} ${ctx_color}${ctx_pct}%${RESET}"
-fi
 if [ "$cache_read" -gt 0 ] 2>/dev/null; then
     cache_fmt=$(fmt_k "$cache_read")
     content+=" ${MUTED}cache${RESET} ${CACHE}${cache_fmt}${RESET}"
